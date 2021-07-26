@@ -10,7 +10,10 @@ from email.mime.text import MIMEText
 
 import requests
 import credentials
-import re
+
+
+
+# fetch the weather data for Berlin and Jakarta
 cities = ["Berlin", "Jakarta"]
 weather_dict = {}
 def city_forecast(city):
@@ -29,47 +32,14 @@ f.write(str(weather_dict) + '\n')
 f.close()
 
 
-# async def getweather():
-#     # declare the client. format defaults to the metric system (celcius, km/h, etc.)
-#     client = python_weather.Client(format=python_weather.IMPERIAL)
-#
-#     # fetch a weather forecast from a city
-#     weather_1 = await client.find("Berlin")
-#     weather_2 = await client.find("Jakarta")
-#
-#
-#
-#
-#
-#     # returns the current day's forecast temperature (int)
-#     #print(weather_1.current.temperature)
-#     #print(weather_2.current.temperature)
-#
-#     # get the weather forecast for a few days
-#     for forecast in weather_1.forecasts:
-#         #print(str(forecast.date), forecast.sky_text, forecast.temperature)
-#         f = open('forecast_Ber.txt', 'a')
-#         f.write(str(weather_1.current.temperature) + '\n')
-#         f.close()
-#
-#     for forecast in weather_2.forecasts:
-#         #print(str(forecast.date), forecast.sky_text, forecast.temperature)
-#         f = open('forecast_Jak.txt', 'a')
-#         f.write(str(weather_2.current.temperature) + '\n')
-#         f.close()
-#     # close the wrapper once done
-#
-#     await client.close()
-#
-# if __name__ == "__main__":
-#     loop = asyncio.get_event_loop()
-#     loop.run_until_complete(getweather())
-
 
 subject = "Weather forecast in Berlin and Jakarta for the upcoming 14 days"
 body = "Hi Lisa, this is the weather forecast for the next 14 days  "
-sender_email = "houssamwees89@gmail.com"
-receiver_email = "houssamwees89@gmail.com"
+
+#here you should add your email address as sender and reciever
+#if you have account on gmail it will be eaasier to use it, because the server is set as smtp.gmail.com
+sender_email = "email-address@domain.com"
+receiver_email = "email-address@domain.com"
 password = input("Type your password and press enter:")
 
 # Create a multipart message and set headers
@@ -83,7 +53,7 @@ message.attach(MIMEText(body, "plain"))
 
 filename = ("forecast_new.txt") # In same directory as script
 
-# Open PDF file in binary mode
+# Open text file in binary mode
 with open(filename, "rb") as attachment:
     # Add file as application/octet-stream
     # Email client can usually download this automatically as attachment
